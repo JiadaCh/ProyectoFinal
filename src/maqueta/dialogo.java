@@ -1,7 +1,7 @@
 
 package maqueta;
 
-public class VENTANITASbIENchingonas {
+public class dialogo {
 
     public static void main(String[] args) {
         
