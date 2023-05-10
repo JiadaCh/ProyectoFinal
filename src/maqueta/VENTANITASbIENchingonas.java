@@ -1,5 +1,5 @@
 
-package ventanitasbienchingonas;
+package maqueta;
 
 public class VENTANITASbIENchingonas {
 
