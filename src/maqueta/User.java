@@ -42,12 +42,12 @@ public class User extends javax.swing.JFrame {
 
         button1.setBackground(new java.awt.Color(60, 63, 65));
         button1.setForeground(new java.awt.Color(204, 204, 204));
-        button1.setLabel("Create");
-        button1.setName("Create"); // NOI18N
+        button1.setLabel("Crear");
+        button1.setName("Crear"); // NOI18N
 
         button2.setBackground(new java.awt.Color(60, 63, 65));
         button2.setForeground(new java.awt.Color(204, 204, 204));
-        button2.setLabel("Cancel");
+        button2.setLabel("Cancelar");
         button2.setMinimumSize(new java.awt.Dimension(51, 24));
 
         label1.setForeground(new java.awt.Color(204, 204, 204));
@@ -55,18 +55,18 @@ public class User extends javax.swing.JFrame {
         label1.setText("Usuario");
 
         label2.setForeground(new java.awt.Color(204, 204, 204));
-        label2.setText("Password");
+        label2.setText("Contraseña");
 
         label3.setForeground(new java.awt.Color(204, 204, 204));
-        label3.setText("Confirm Password");
+        label3.setText("Confirmar Contraseña");
 
         label4.setForeground(new java.awt.Color(204, 204, 204));
-        label4.setText("Email Address");
+        label4.setText("Email");
 
         label5.setBackground(new java.awt.Color(60, 63, 65));
         label5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         label5.setForeground(new java.awt.Color(153, 153, 153));
-        label5.setText("Create New User");
+        label5.setText("Crear un Nuevo Usuario");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,7 +97,7 @@ public class User extends javax.swing.JFrame {
                         .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
             .addComponent(label5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -126,6 +126,8 @@ public class User extends javax.swing.JFrame {
                     .addComponent(button2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
+
+        label5.getAccessibleContext().setAccessibleName("Crear un Nuevo Usuario");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
