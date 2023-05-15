@@ -31,6 +31,7 @@ public class Prinicipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jButton6 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -56,6 +57,8 @@ public class Prinicipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenuItem1.setText("jMenuItem1");
+
+        jButton6.setText("jButton6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,6 +186,7 @@ public class Prinicipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
