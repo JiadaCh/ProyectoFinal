@@ -1,5 +1,5 @@
 
-package maqueta;
+package Proyecto;
 
 public class dialogo {
 

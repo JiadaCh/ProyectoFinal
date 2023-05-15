@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package maqueta;
+package Ventanas;
 
 /**
  *
@@ -38,12 +38,12 @@ public class login extends javax.swing.JFrame {
 
         jPasswordField1.setText("Password");
 
-        jFormattedTextField1.setText("Username");
+        jFormattedTextField1.setText("Usuario");
 
         button1.setActionCommand("LOGIN");
         button1.setBackground(new java.awt.Color(60, 63, 65));
         button1.setForeground(new java.awt.Color(204, 204, 204));
-        button1.setLabel("LOGIN");
+        button1.setLabel("Iniciar Sesión");
         button1.setName("LOGIN"); // NOI18N
 
         label1.setForeground(new java.awt.Color(204, 204, 204));
