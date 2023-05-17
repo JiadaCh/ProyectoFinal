@@ -48,7 +48,7 @@ public class login extends javax.swing.JFrame {
         jLabel1.setText("Bienvenido");
 
         jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
         jTextField1.setText("Usuario");
 
         jPasswordField1.setBackground(new java.awt.Color(255, 255, 255));
