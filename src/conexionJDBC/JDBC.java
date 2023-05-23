@@ -16,7 +16,7 @@ public class JDBC {
     public static void main(String[] args) {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectofinal","jiada","1345749666a?");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyectofinal","jiada","1234");
             System.out.println(con);
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(JDBC.class.getName()).log(Level.SEVERE, null, ex);
