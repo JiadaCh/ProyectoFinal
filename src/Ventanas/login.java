@@ -4,6 +4,9 @@
  */
 package Ventanas;
 
+import Control.Conexion;
+import com.mysql.cj.xdevapi.Result;
+import com.mysql.cj.xdevapi.Statement;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
@@ -12,13 +15,15 @@ import javax.swing.ImageIcon;
  * @author javie
  */
 public class login extends javax.swing.JFrame {
-
+    
+    Conexion cx;
     /**
      * Creates new form login
      */
     public login() {
         initComponents();
         setIconImage(new ImageIcon(Toolkit.getDefaultToolkit().getImage("./src/imagen/icono.png")).getImage());
+        cx = new Conexion();
     }
 
     /**
@@ -35,7 +40,7 @@ public class login extends javax.swing.JFrame {
         jTree1 = new javax.swing.JTree();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        Usuario = new javax.swing.JTextField();
+        TxtUsuario = new javax.swing.JTextField();
         Contra = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         Registrar = new javax.swing.JLabel();
@@ -55,9 +60,9 @@ public class login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Bienvenido");
 
-        Usuario.setBackground(new java.awt.Color(255, 255, 255));
-        Usuario.setForeground(new java.awt.Color(204, 204, 204));
-        Usuario.setText("Usuario");
+        TxtUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        TxtUsuario.setForeground(new java.awt.Color(204, 204, 204));
+        TxtUsuario.setText("Usuario");
 
         Contra.setBackground(new java.awt.Color(255, 255, 255));
         Contra.setForeground(new java.awt.Color(0, 0, 0));
@@ -77,6 +82,11 @@ public class login extends javax.swing.JFrame {
         Login.setBackground(new java.awt.Color(204, 204, 204));
         Login.setForeground(new java.awt.Color(51, 51, 51));
         Login.setText("LOGIN");
+        Login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LoginMouseClicked(evt);
+            }
+        });
         Login.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoginActionPerformed(evt);
@@ -92,7 +102,7 @@ public class login extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Usuario)
+                            .addComponent(TxtUsuario)
                             .addComponent(Contra, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(184, 184, 184)
@@ -116,7 +126,7 @@ public class login extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
                 .addGap(30, 30, 30)
-                .addComponent(Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TxtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(Contra, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
@@ -151,6 +161,14 @@ public class login extends javax.swing.JFrame {
         regis.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_RegistrarMouseClicked
+
+    private void LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginMouseClicked
+        String usuario = TxtUsuario.getText();
+        String contra = String.valueOf(Contra.getPassword());
+        String query ="select nombre, contrasena from usuario where nombre='"+usuario+"' and contrasena='"+contra+"'";
+        
+        
+    }//GEN-LAST:event_LoginMouseClicked
 
     /**
      * @param args the command line arguments
@@ -191,7 +209,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JPasswordField Contra;
     private javax.swing.JButton Login;
     private javax.swing.JLabel Registrar;
-    private javax.swing.JTextField Usuario;
+    private javax.swing.JTextField TxtUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -199,4 +217,5 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
+
 }
