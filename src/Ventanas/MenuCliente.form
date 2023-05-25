@@ -199,6 +199,7 @@
             <Property name="text" type="java.lang.String" value="A&#xf1;adir"/>
           </Properties>
           <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="AnadirMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AnadirActionPerformed"/>
           </Events>
         </Component>

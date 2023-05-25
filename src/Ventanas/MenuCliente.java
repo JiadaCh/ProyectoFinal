@@ -4,15 +4,24 @@
  */
 package Ventanas;
 
+import Control.Actualizar;
+import Control.CConexion;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.Vector;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author javie
  */
-public class MenuCliente extends javax.swing.JFrame {
+public class MenuCliente extends javax.swing.JFrame implements Actualizar{
 
     /**
      * Creates new form Menu
@@ -106,6 +115,11 @@ public class MenuCliente extends javax.swing.JFrame {
         Anadir.setBackground(new java.awt.Color(255, 255, 255));
         Anadir.setForeground(new java.awt.Color(51, 51, 51));
         Anadir.setText("Añadir");
+        Anadir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AnadirMouseClicked(evt);
+            }
+        });
         Anadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AnadirActionPerformed(evt);
@@ -229,6 +243,12 @@ public class MenuCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ImprimirActionPerformed
 
+    private void AnadirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AnadirMouseClicked
+        FormularioCliente f = new FormularioCliente();
+        f.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_AnadirMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -278,4 +298,34 @@ public class MenuCliente extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+    @Override
+    public  void actualizar() {
+        CConexion cx = new CConexion();
+        try {
+            PreparedStatement ps = cx.conectar().prepareStatement("Select * from proyectofinal");
+            
+            ResultSet rs = ps.executeQuery();
+            ResultSetMetaData stData = rs.getMetaData();
+            
+            int q = stData.getColumnCount();
+            
+            DefaultTableModel recordTable = (DefaultTableModel) jTable1.getModel();
+            recordTable.setColumnCount(0);
+            while(rs.next()){
+                Vector columnData = new Vector();
+                for (int i = 1; i<= q;i ++){
+                    columnData.add(rs.getString("id"));
+                    columnData.add(rs.getString("nombre"));
+                    columnData.add(rs.getString("apellidos"));
+                    columnData.add(rs.getString("email"));
+                    columnData.add(rs.getString("direccion"));
+                    columnData.add(rs.getObject("fechaNac"));
+                }
+                recordTable.addRow(columnData);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ex.getMessage());
+        }
+    }
+
 }

@@ -59,6 +59,11 @@ public class MenuModulos extends javax.swing.JFrame {
         CerrarSesion.setBackground(new java.awt.Color(255, 255, 255));
         CerrarSesion.setForeground(new java.awt.Color(51, 51, 51));
         CerrarSesion.setText("Cerrar Sesión");
+        CerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CerrarSesionMouseClicked(evt);
+            }
+        });
         CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CerrarSesionActionPerformed(evt);
@@ -146,6 +151,12 @@ public class MenuModulos extends javax.swing.JFrame {
     private void BotonArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonArticulosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonArticulosActionPerformed
+
+    private void CerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CerrarSesionMouseClicked
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_CerrarSesionMouseClicked
 
     /**
      * @param args the command line arguments

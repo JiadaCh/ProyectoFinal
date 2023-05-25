@@ -4,8 +4,15 @@
  */
 package Ventanas;
 
+import Control.CUsuario;
 import java.awt.Toolkit;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -97,6 +104,11 @@ public class CreateUser extends javax.swing.JFrame {
         Confirmar.setBackground(new java.awt.Color(255, 255, 255));
         Confirmar.setForeground(new java.awt.Color(51, 51, 51));
         Confirmar.setText("Confirmar");
+        Confirmar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ConfirmarMouseClicked(evt);
+            }
+        });
         Confirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConfirmarActionPerformed(evt);
@@ -192,11 +204,32 @@ public class CreateUser extends javax.swing.JFrame {
     }//GEN-LAST:event_ConfirmarActionPerformed
 
     private void cancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelarMouseClicked
-        login cancelar = new login();
+        Login cancelar = new Login();
         cancelar.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelarMouseClicked
 
+    private void ConfirmarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ConfirmarMouseClicked
+        CUsuario reg = new CUsuario();
+        if (reg.buscar( Email.getText())){
+            JOptionPane.showMessageDialog(null, "Ya existe el email");
+        }else if (reg.buscar( Usuario.getText())){
+            JOptionPane.showMessageDialog(null, "Ya existe el usuario");
+        }else if (confContra.getPassword().length == 0 || Usuario.getText().isBlank() || Email.getText().isBlank() || Contra.getPassword().length == 0){
+            JOptionPane.showMessageDialog(null, "Rellanar los campos");
+        }else{
+            String contra1 = String.valueOf(Contra.getPassword());
+            String contra2 = String.valueOf(confContra.getPassword());
+            if (contra1.equals(contra2)){
+                
+                reg.validarRegistro(Usuario, Contra, Email);
+            }else {
+                JOptionPane.showMessageDialog(null, "Contraseña distintos");
+            }
+            
+        }
+    }//GEN-LAST:event_ConfirmarMouseClicked
+    
     /**
      * @param args the command line arguments
      */
