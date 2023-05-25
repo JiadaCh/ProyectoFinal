@@ -17,16 +17,30 @@ import javax.swing.JOptionPane;
  *
  * @author javie
  */
-public class FormularioCliente extends javax.swing.JFrame {
+public class DatoCliente extends javax.swing.JFrame {
+
     CConexion cx = new CConexion();
     PreparedStatement ps;
     ResultSet rs;
+    String id, nombre, apellido, direccion, email, fecha;
+
     /**
      * Creates new form FormularioCliente
      */
-    public FormularioCliente() {
+    public DatoCliente(String id, String nombre, String apellido, String direccion, String email, String fecha) {
+        rellenar(id, nombre, apellido, direccion, email, fecha);
         initComponents();
         setIconImage(new ImageIcon(Toolkit.getDefaultToolkit().getImage("./src/imagen/icono.png")).getImage());
+    }
+
+    public void rellenar(String id, String nombre, String apellido, String direccion, String email, String fecha) {
+        TxtID.setText(id);
+        TxtNombre.setText(nombre);
+        TxtApellidos.setText(apellido);
+        TxtDireccion.setText(direccion);
+        TxtEmail.setText(email);
+        Fecha.setText(fecha);
+
     }
 
     /**
@@ -39,6 +53,8 @@ public class FormularioCliente extends javax.swing.JFrame {
     private void initComponents() {
 
         jToggleButton1 = new javax.swing.JToggleButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -60,13 +76,26 @@ public class FormularioCliente extends javax.swing.JFrame {
 
         jToggleButton1.setText("jToggleButton1");
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Añadir Cliente");
+        jLabel1.setText("     Cliente");
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Nombre");
@@ -110,6 +139,8 @@ public class FormularioCliente extends javax.swing.JFrame {
 
         TxtID.setBackground(new java.awt.Color(255, 255, 255));
         TxtID.setForeground(new java.awt.Color(0, 0, 0));
+        TxtID.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        TxtID.setEnabled(false);
 
         Aceptar.setBackground(new java.awt.Color(255, 255, 255));
         Aceptar.setForeground(new java.awt.Color(51, 51, 51));
@@ -136,8 +167,7 @@ public class FormularioCliente extends javax.swing.JFrame {
 
         Fecha.setBackground(new java.awt.Color(255, 255, 255));
         Fecha.setForeground(new java.awt.Color(51, 51, 51));
-        Fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("Dd/MM/yyyy"))));
-        Fecha.setText("25/05/2023");
+        Fecha.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
         Fecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 FechaActionPerformed(evt);
@@ -174,27 +204,24 @@ public class FormularioCliente extends javax.swing.JFrame {
                                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGap(9, 9, 9)
-                                                .addComponent(TxtID, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(TxtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(47, 47, 47)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 102, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addComponent(jLabel6))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(3, 3, 3)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24)))
-                        .addGap(67, 67, 67)))
+                            .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(65, 65, 65)))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -218,19 +245,20 @@ public class FormularioCliente extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(TxtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Aceptar)
+                            .addComponent(jButton2))
+                        .addGap(27, 27, 27))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Aceptar)
-                    .addComponent(jButton2))
-                .addGap(27, 27, 27))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -260,36 +288,29 @@ public class FormularioCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtNombreActionPerformed
 
     private void AceptarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AceptarMouseClicked
-        if (TxtID.getText().isBlank() || TxtNombre.getText().isBlank() || TxtApellidos.getText().isEmpty() || TxtDireccion.getText().isEmpty() || TxtEmail.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "Formulario incorrecto");
+        String nom = TxtNombre.getText();
+        String ape = TxtApellidos.getText();
+        String email = TxtEmail.getText();
+        if (TxtNombre.getText().isBlank() || TxtApellidos.getText().isEmpty() || TxtDireccion.getText().isEmpty() || TxtEmail.getText().isBlank() || Fecha.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Formulario incompleto");
         } else {
             try {
-                ps = cx.getConexion().prepareStatement("Select * from clientes where id='"+TxtID.getText()+"' or email= '"+TxtEmail.getText()+"'");
-                rs = ps.executeQuery();
-                if (rs.next()){
-                    JOptionPane.showMessageDialog(this, "Cliente repetido");
-                }else{
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("DD/MM/YYYY");
-                    Date fecha = dateFormat.parse(Fecha.getText());
-                    ps = cx.getConexion().prepareStatement("insert into cliente(id,nombre,apellidos,direccion,email,fechaNac) value(?,?,?,?,?,?)");
 
-                    ps.setString(1, TxtID.getText());
-                    ps.setString(2, TxtNombre.getText());
-                    ps.setString(3, TxtApellidos.getText());
-                    ps.setString(4, TxtDireccion.getText());
-                    ps.setString(5, TxtEmail.getText());
-                    ps.setObject(6, fecha);
-                    ps.executeUpdate();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("DD/MM/YYYY");
+                Date fecha = dateFormat.parse(Fecha.getText());
 
-                    JOptionPane.showMessageDialog(this, "Se ha añadido");
+                ps = cx.getConexion().prepareStatement("Update cliente set id='" + TxtID.getText() + "', nombre='" + nom + "', apellidos='" + ape + "', email='" + email + "', direccion='" + TxtDireccion.getText() + "', fechaNac='" + fecha + "' where id='" + TxtID.getText() + "'");
 
-                    MenuCliente menu = new MenuCliente();
-                    menu.setVisible(true);
-                    this.dispose();
-                }
+                ps.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Datos modificado");
+
+                MenuCliente menu = new MenuCliente();
+                menu.setVisible(true);
+                this.dispose();
 
             } catch (SQLException ex) {
-                Logger.getLogger(FormularioCliente.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DatoCliente.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ParseException ex) {
                 JOptionPane.showMessageDialog(this, "Fecha incorrecta");
             }
@@ -319,20 +340,23 @@ public class FormularioCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DatoCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormularioCliente().setVisible(true);
+                new DatoCliente("","","","","","").setVisible(true);
             }
         });
     }
@@ -356,6 +380,8 @@ public class FormularioCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
     private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

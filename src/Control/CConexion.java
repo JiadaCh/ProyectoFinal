@@ -18,7 +18,7 @@ public class CConexion{
     String user = "jiada";
     String password = "1234";
     final String driver = "com.mysql.cj.jdbc.Driver";
-    Connection conexion = null;
+    private Connection conexion = null;
 
     public CConexion() {
 
@@ -33,15 +33,19 @@ public class CConexion{
             Logger.getLogger(ex.getMessage());
         }
 
-        return conexion;
+        return getConexion();
     }
 
     public void desconectar() {
         try {
-            conexion.close();
+            getConexion().close();
         } catch (SQLException ex) {
             Logger.getLogger(ex.getMessage());
         }
+    }
+
+    public Connection getConexion() {
+        return conexion;
     }
 
     

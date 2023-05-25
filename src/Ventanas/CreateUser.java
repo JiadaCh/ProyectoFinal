@@ -4,13 +4,9 @@
  */
 package Ventanas;
 
+import Control.CConexion;
 import Control.CUsuario;
 import java.awt.Toolkit;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 

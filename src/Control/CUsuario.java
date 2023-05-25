@@ -22,7 +22,7 @@ public class CUsuario {
                 PreparedStatement ps = null;
 
                 String consulta = "select * from usuario where nombre='" + usuario + "' and contrasena='" + contra + "'";
-                ps = cx.conectar().prepareStatement(consulta);
+                ps = cx.getConexion().prepareStatement(consulta);
 
                 ps.setString(1, usuario.getText());
                 ps.setString(2, String.valueOf(contra.getPassword()));
@@ -54,7 +54,7 @@ public class CUsuario {
                 PreparedStatement ps = null;
 
                 String consulta = "Insert into usuario values(?,?,?)";
-                ps = cx.conectar().prepareStatement(consulta);
+                ps = cx.getConexion().prepareStatement(consulta);
 
                 ps.setString(1, usuario.getText());
                 ps.setString(2, String.valueOf(contra.getPassword()));
@@ -74,7 +74,7 @@ public class CUsuario {
 
     public boolean buscar(String id) {
         try {
-            PreparedStatement ps = cx.conectar().prepareStatement("select * from usuario where nombre='" + id);
+            PreparedStatement ps = cx.conectar().prepareStatement("select * from usuario where nombre='" + id+"'");
 
             ResultSet rs = ps.executeQuery();
             return rs.next();
