@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Logger;
-import javax.persistence.*;
+import java.sql.*;
 
 /**
  *
@@ -13,33 +13,36 @@ import javax.persistence.*;
  */
 public class Conexion {
     
-    String url = "jdbc:mysql://localhost:3306/proyectofinal";
-    String user = "jiada";
-    String password = "1234";
-    String driver = "";
-    Connection conectar = null;
+    static final String url = "jdbc:mysql://localhost:3306/proyectofinal";
+    static String user = "jiada";
+    static String password = "1234";
+    static final String driver = "com.mysql.cj.jdbc.Driver";
+    static Connection conexion = null;
     
     public Conexion(){
         
     }
     
-    public Connection conectar(){
+    public static Connection conectar(){
+        
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conectar = (Connection) DriverManager.getConnection(url,user,password);
+            Class.forName(driver);
+            conexion = (Connection) DriverManager.getConnection(url,user,password);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(ex.getMessage());
         } 
         
-        return conectar;
+        return conexion;
     }
     
-    public void desconectar(){
+    public static void desconectar(){
         try{
-            conectar.close();
+            conexion.close();
         } catch (IOException ex){
             Logger.getLogger(ex.getMessage());
         }
     }
+    
+
     
 }

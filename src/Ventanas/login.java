@@ -5,10 +5,13 @@
 package Ventanas;
 
 import Control.Conexion;
+import com.mysql.cj.jdbc.PreparedStatementWrapper;
 import com.mysql.cj.xdevapi.Result;
 import com.mysql.cj.xdevapi.Statement;
+import com.sun.jdi.connect.spi.Connection;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +27,9 @@ public class login extends javax.swing.JFrame {
         initComponents();
         setIconImage(new ImageIcon(Toolkit.getDefaultToolkit().getImage("./src/imagen/icono.png")).getImage());
         cx = new Conexion();
+        if (cx == null){
+            JOptionPane.showMessageDialog(this, "Conexion del BD no disponible", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -165,7 +171,12 @@ public class login extends javax.swing.JFrame {
     private void LoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LoginMouseClicked
         String usuario = TxtUsuario.getText();
         String contra = String.valueOf(Contra.getPassword());
-        String query ="select nombre, contrasena from usuario where nombre='"+usuario+"' and contrasena='"+contra+"'";
+        
+        if (usuario.isEmpty() || contra.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Usuario / Contrasena están vacias", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            userLogin(usuario,contra);
+        }
         
         
     }//GEN-LAST:event_LoginMouseClicked
@@ -217,5 +228,19 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
+
+    private void userLogin(String usuario, String contra) {
+        String query ="select nombre, contrasena from usuario where nombre='"+usuario+"' and contrasena='"+contra+"'";
+        Connection bd = Conexion.conectar();
+        try{
+            PreparedStatement st = bd.prepareStatement(query);
+        }
+    }
+
+    private static class PreparedStatement {
+
+        public PreparedStatement() {
+        }
+    }
 
 }
