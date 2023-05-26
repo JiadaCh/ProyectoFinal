@@ -83,6 +83,7 @@ public class DatoCliente extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Jupiter");
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
